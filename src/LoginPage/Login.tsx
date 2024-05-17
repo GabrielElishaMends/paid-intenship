@@ -8,7 +8,7 @@ const Login: React.FC = () => {
   return (
     <Container
       fluid
-      className="outer-container d-flex justify-content-center align-items-center min-vh-100"
+      className="outer-container d-flex justify-content-center align-items-center min-vh-10"
     >
       <Row className="w-100">
         <Col xs={9} md={8} lg={5} className="mx-auto">
