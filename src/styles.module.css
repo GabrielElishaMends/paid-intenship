@@ -1,0 +1,110 @@
+.apply {
+  width: 100px;
+  background-color: lawngreen;
+}
+
+.compName {
+  font-weight: bold;
+  font-size: 35px;
+}
+
+.cardMargin {
+  margin-bottom: 20px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.containerWithMargin {
+  margin-top: 80px;
+}
+
+.customHeight {
+  height: 100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.hoverBold {
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  transition: font-weight 0.1s;
+}
+
+.hoverBold:hover {
+  outline: 1px solid white;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  transition: font-weight 0.2s;
+}
+
+.link:hover {
+  font-weight: bold;
+}
+
+.logo:hover {
+  cursor: default;
+}
+
+.marginBelowHeader {
+  margin-bottom: 120px;
+}
+
+.negmarginLeft {
+  margin-left: -12px;
+  position: relative;
+  z-index: -1;
+}
+
+.no-text-wrap {
+  white-space: nowrap;
+}
+
+.onImage {
+  font-size: 50px;
+  font-weight: bolder;
+  text-shadow: 3px 3px 2px black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.paddingLeft {
+  padding-left: 100px;
+}
+
+.sign {
+  color: black;
+  text-decoration: none;
+}
+
+.signUp:hover .sign {
+  color: white;
+}
+
+.signUp {
+  color: black;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  transition: font-weight, background-color 0.3s;
+}
+
+.signUp:hover {
+  background-color: rgb(33, 37, 41);
+  outline: 1px solid white;
+  cursor: pointer;
+}
