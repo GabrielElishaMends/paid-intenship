@@ -1,44 +1,24 @@
 import React from 'react';
 import styles from '../styles.module.css';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Col, Container, Image, Row } from 'react-bootstrap';
 
-const HomeBody = ({ name }) => {
+const HomeBody = () => {
   return (
-    <Container className={`${styles.cardMargin} bg-secondary`}>
-      <Row className=" justify-content-center">
-        <Row className="mb-1">
-          <Col className={`${styles.compName} border-bottom`}>{name}</Col>
-        </Row>
+    <Container fluid className={`${styles.containerWithMargin} overflow-hidden`}>
+      <Row>
+        <Col>
+          <Image src="./image/imgHome1.jpg" className={styles.negmarginLeft} />
+        </Col>
       </Row>
-      <Row className=" justify-content-center fs-4">
-        <Row>
-          <Col className="mb-1">
-            <span className="fw-bold">Role:</span> Internship Role
-          </Col>
-        </Row>
-        <Row>
-          <Col className="mb-1">
-            <span className="fw-bold">Duration:</span> 3 months
-          </Col>
-        </Row>
-        <Row>
-          <Col className="mb-1">
-            <span className="fw-bold">Qualifications:</span> Lorem ipsum dolor
-            sit amet
-          </Col>
-        </Row>
-        <Row>
-          <Col className="mb-1">
-            <span className="fw-bold">Salary:</span> $1000 per month
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Button variant="dark" className={`${styles.apply} mb-1`}>
-              Apply
-            </Button>
-          </Col>
-        </Row>
+      <Row>
+        <Col>
+          <p className={`${styles.onImage} text-white w-100 text-center`}>APPLY FOR PAID INTERNSHIPS HERE</p>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <p className={`${styles.onSubImage} ${styles.noTextWrap} text-white w-100 text-center`}>Bridging the gap between Students and Companies</p>
+        </Col>
       </Row>
     </Container>
   );

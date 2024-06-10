@@ -4,13 +4,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const Header = () => {
+const CompanyHeader = () => {
   return (
     <Container
       fluid
-      className={`${styles.customHeight} d-flex align-items-center bg-dark justify-content-center`}
+      className={`${styles.customHeight} d-flex align-items-center bg-dark`}
     >
-      <Row className="d-flex align-items-center text-white w-100">
+      <Row noGutters className="d-flex align-items-center text-white w-100">
         <Col className={`${styles.logo} fs-2 fw-bold`}>
           <Link to="/" className={styles.link}>
             PAID-INTERNSHIP
@@ -28,8 +28,8 @@ const Header = () => {
             <Col
               className={`${styles.hoverBold} d-flex align-items-center justify-content-center`}
             >
-              <Link to="/service" className={styles.link}>
-                Service
+              <Link to="/contactus" className={styles.link}>
+                Contact Us
               </Link>
             </Col>
             <Col
@@ -39,20 +39,6 @@ const Header = () => {
                 About
               </Link>
             </Col>
-            <Col
-              className={`${styles.signUp} d-flex align-items-center justify-content-center`}
-            >
-              <Link to="/signup" className={styles.sign}>
-                Sign Up
-              </Link>
-            </Col>
-            <Col
-              className={`${styles.signUp}  bg-secondary d-flex align-items-center justify-content-center`}
-            >
-              <Link to="/login" className={styles.sign}>
-                Log in
-              </Link>
-            </Col>
           </Row>
         </Col>
       </Row>
@@ -60,4 +46,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default CompanyHeader;

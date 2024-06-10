@@ -1,0 +1,17 @@
+.application-form {
+  background-color: white;
+}
+
+.homeLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+}
+
+.outer-container {
+  background-color: rgba(0, 0, 0, 0.1);
+  min-height: 100vh;
+}

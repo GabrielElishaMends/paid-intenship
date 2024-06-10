@@ -1,0 +1,26 @@
+.aboutbg {
+  background-color: #cad0d6;
+}
+
+.container {
+  max-width: 1200px;
+}
+
+h1,
+h2 {
+  color: #343a40;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+.card {
+  border: none;
+}
+
+.card img {
+  height: 200px;
+  object-fit: cover;
+}

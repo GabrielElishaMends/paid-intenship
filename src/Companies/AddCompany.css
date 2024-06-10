@@ -1,0 +1,15 @@
+.add-company-container {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-company-heading {
+  margin-bottom: 1.5rem;
+}
+
+.add-company-form {
+  max-width: 500px;
+  margin: auto;
+}

@@ -1,0 +1,29 @@
+.contact-us-background {
+  background-image: url('./path-to-your-background-image.jpg'); /* Add a relevant background image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.contact-us-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-details h4,
+.contact-details p {
+  margin-bottom: 10px;
+}
+
+.social-icons a {
+  font-size: 1.5rem;
+  color: #000;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #007bff;
+}
