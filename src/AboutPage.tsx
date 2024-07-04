@@ -2,12 +2,12 @@ import React from 'react';
 import About from './AboutPage/About';
 import BelowHeaderMargin from './AboutPage/BelowHeaderMargin';
 import Footer from './HomePage/Footer';
-import AboutHeader from './AboutPage/AboutHeader';
+import InternshipHeader from './Internships/InternshipHeader';
 
 const AboutPage = () => {
   return (
     <div>
-      <AboutHeader />
+      <InternshipHeader />
       <BelowHeaderMargin />
       <About />
       <Footer />

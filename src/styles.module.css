@@ -43,6 +43,9 @@
 }
 
 .hoverBold {
+  width: 10px;
+  padding-left: 500px;
+  /* padding-left: 20px; */
   text-align: center;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -50,7 +53,6 @@
 }
 
 .hoverBold:hover {
-  outline: 1px solid white;
   border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
@@ -58,12 +60,46 @@
 
 .link {
   color: white;
+  font-weight: lighter;
   text-decoration: none;
+  margin-left: 20px;
   transition: font-weight 0.2s;
 }
 
+.link:first-child {
+  margin-left: 0;
+}
+
 .link:hover {
+  text-decoration: underline;
+}
+
+.activeLink {
+  /* text-decoration: underline; */
   font-weight: bold;
+}
+
+.logInLink {
+  background-color: rgb(157, 149, 149);
+  padding: 0px 5px;
+  border-radius: 8px;
+  padding:0px 10px;
+  margin-right: -15px;
+  transition: 0.2s ease-in;
+}
+
+.logInLink:hover {
+  text-decoration: none;
+  background-color: rgb(122, 116, 116);
+}
+
+.logoLink {
+  color: white;
+  text-decoration: none;
+}
+
+.logoLink:hover {
+  text-decoration: none;
 }
 
 .logo:hover {
@@ -72,6 +108,11 @@
 
 .marginBelowHeader {
   margin-bottom: 120px;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
 }
 
 .negmarginLeft {
@@ -128,5 +169,44 @@
 .signUp:hover {
   background-color: rgb(33, 37, 41);
   outline: 1px solid white;
+  cursor: pointer;
+}
+
+
+.signUpLink {
+  color: black;
+  background-color: rgb(255, 255, 255);
+  padding: 0px 5px;
+  border-radius: 8px;
+  transition: 0.2s ease-in;
+}
+
+.signUpLink:hover {
+  text-decoration: none;
+  background-color:rgb(220, 214, 214);
+}
+
+.userCircle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  /* background-color: #007bff; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-weight: bold;
+  font-size: 1.2em;
+  /* margin-right: -100px; */
+}
+
+.userCirk {
+  /* background-color: pink; */
+  width: 50%;
+  margin-right: -50px;
+  margin-left: -70px;
+}
+.userCirk:hover {
   cursor: pointer;
 }

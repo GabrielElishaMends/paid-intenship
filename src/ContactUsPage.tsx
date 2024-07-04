@@ -1,14 +1,16 @@
-import React from 'react'
-import ContactUs from './ContactUs/ContactUs'
-import ContactUsHeader from './ContactUs/ContactUsHeader'
+import React from 'react';
+import ContactUs from './ContactUs/ContactUs';
+import InternshipHeader from './Internships/InternshipHeader';
+import Footer from '../src/HomePage/Footer';
 
 const ContactUsPage = () => {
   return (
     <div>
-      <ContactUsHeader />
+      <InternshipHeader />
       <ContactUs />
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default ContactUsPage
+export default ContactUsPage;

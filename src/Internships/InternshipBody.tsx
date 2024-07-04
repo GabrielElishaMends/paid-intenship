@@ -1,8 +1,8 @@
-// src/Companies/CompanyBody.tsx
+// src/internships/CompanyBody.tsx
 import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import { useAuth } from './AuthContext'; // Adjust the import path as necessary
+import { useAuth } from './AuthContext';
 import styles from '../styles.module.css';
 import { CompanyInfo } from '../data/companyData';
 
@@ -27,7 +27,9 @@ const CompanyBody: React.FC<CompanyBodyProps> = ({ company }) => {
     <Container className={`${styles.cardMargin} bg-secondary mb-4`}>
       <Row className="justify-content-center">
         <Row className="mb-1">
-          <Col className={`${styles.compName} border-bottom`}>{companyName}</Col>
+          <Col className={`${styles.compName} border-bottom`}>
+            {companyName}
+          </Col>
         </Row>
       </Row>
       <Row className="justify-content-center fs-4">

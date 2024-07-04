@@ -25,7 +25,7 @@ const Footer = () => {
             </Link>
           </Row>
           <Row className="fw-light mb-2">
-            <Link to="/companies" className={styles.footlink}>
+            <Link to="/internships" className={styles.footlink}>
               COMPANIES
             </Link>
           </Row>

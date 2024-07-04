@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { fetchCompanies, CompanyInfo } from '../src/data/companyData';
-import CompanyBody from '../src/Companies/CompanyBody';
+import { fetchCompanies, CompanyInfo } from './data/companyData';
+import CompanyBody from './Internships/InternshipBody';
 import { Container } from 'react-bootstrap';
-import CompanyHeader from '../src/Companies/CompanyHeader';
-import MarginBelowHeader from '../src/Companies/MarginBelowHeader';
-import Footer from '../src/HomePage/Footer';
+import InternshipHeader from './Internships/InternshipHeader';
+import MarginBelowHeader from './Internships/MarginBelowHeader';
+import Footer from './HomePage/Footer';
 
 const CompanyPage: React.FC = () => {
   const [companies, setCompanies] = useState<CompanyInfo[]>([]);
@@ -25,7 +25,7 @@ const CompanyPage: React.FC = () => {
 
   return (
     <>
-      <CompanyHeader />
+      <InternshipHeader />
       <MarginBelowHeader />
       <Container>
         {error && <p className="text-danger">{error}</p>}

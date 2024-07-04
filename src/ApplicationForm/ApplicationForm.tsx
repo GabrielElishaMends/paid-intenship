@@ -117,7 +117,7 @@ const ApplicationForm: React.FC = () => {
       console.log('Application submitted successfully');
       setAlert('Application submitted successfully!');
       setTimeout(() => {
-        history.push('/companies');
+        history.push('/internships');
       }, 2000);
     } catch (error) {
       console.error('Error adding document: ', error);

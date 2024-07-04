@@ -28,7 +28,7 @@ const AboutHeader = () => {
             <Col
               className={`${styles.hoverBold} d-flex align-items-center justify-content-center`}
             >
-              <Link to="/companies" className={styles.link}>
+              <Link to="/internships" className={styles.link}>
                 Companies
               </Link>
             </Col>

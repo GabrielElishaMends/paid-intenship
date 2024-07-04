@@ -32,7 +32,7 @@ const AddCompany: React.FC = () => {
         phone,
         description,
       });
-      history.push('/companies');
+      history.push('/internships');
     } catch (error: any) {
       setError(error.message);
     }

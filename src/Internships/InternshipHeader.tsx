@@ -1,18 +1,26 @@
-// src/components/HomeHeader.tsx
+// src/components/InternshipHeader.tsx
 
 import React from 'react';
 import styles from '../styles.module.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Col, Container, Row } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
-const HomeHeader = () => {
+const InternshipHeader = () => {
+  const { currentUser } = useAuth();
+
+  // Extract the first letter of the user's display name or email
+  const firstLetter = currentUser
+    ? (currentUser.displayName || currentUser.email)?.[0]?.toUpperCase()
+    : '';
+
   return (
     <Container
       fluid
       className={`${styles.customHeight} d-flex align-items-center bg-dark`}
     >
-      <Row className="d-flex align-items-center text-white w-100">
+      <Row noGutters className="d-flex align-items-center text-white w-100">
         <Col className={`${styles.logo} fs-2 fw-bold`}>
           <NavLink to="/" className={styles.logoLink} exact>
             PAID-INTERNSHIP
@@ -22,7 +30,7 @@ const HomeHeader = () => {
           <div className={`${styles.navLinks}`}>
             <NavLink
               to="/home"
-              className={`${styles.link} fs-5 fw-bold`}
+              className={`${styles.link} fs-5`}
               activeClassName={styles.activeLink}
             >
               Home
@@ -32,7 +40,7 @@ const HomeHeader = () => {
               className={`${styles.link} fs-5`}
               activeClassName={styles.activeLink}
             >
-              Internships
+              Internship
             </NavLink>
             <NavLink
               to="/contactus"
@@ -48,25 +56,19 @@ const HomeHeader = () => {
             >
               About
             </NavLink>
-            <NavLink
-              to="/login"
-              className={`${styles.link} fs-5 ${styles.logInLink}`}
-              activeClassName={styles.activeLink}
-            >
-              Log In
-            </NavLink>
-            <NavLink
-              to="/signup"
-              className={`${styles.link} fs-5 ${styles.signUpLink}`}
-              activeClassName={styles.activeLink}
-            >
-              Sign Up
-            </NavLink>
           </div>
+        </Col>
+        <Col
+          xs="auto"
+          className="d-flex align-items-center justify-content-end"
+        >
+          {currentUser && (
+            <div className={styles.userCircle}>{firstLetter}</div>
+          )}
         </Col>
       </Row>
     </Container>
   );
 };
 
-export default HomeHeader;
+export default InternshipHeader;
