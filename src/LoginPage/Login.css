@@ -1,3 +1,5 @@
+/* src/components/Login.css */
+
 .login-form {
   background-color: #fff; /* Background color for the form */
 }
@@ -52,4 +54,14 @@
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+.forgot-password {
+  color: red;
+  text-align: center;
+  display: block;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
 }

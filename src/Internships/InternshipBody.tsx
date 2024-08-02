@@ -1,5 +1,4 @@
-// src/internships/CompanyBody.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from './AuthContext';
@@ -10,12 +9,12 @@ interface CompanyBodyProps {
   company: CompanyInfo;
 }
 
-const CompanyBody: React.FC<CompanyBodyProps> = ({ company }) => {
-  const { id, companyName, location, email, phone, description } = company;
+const InternshipBody: React.FC<CompanyBodyProps> = ({ company }) => {
   const { currentUser } = useAuth();
   const history = useHistory();
+  const [showFullDescription, setShowFullDescription] = useState(false);
 
-  const handleApplyClick = () => {
+  const handleApplyClick = (id: string) => {
     if (currentUser) {
       history.push('/apply', { companyId: id });
     } else {
@@ -23,43 +22,79 @@ const CompanyBody: React.FC<CompanyBodyProps> = ({ company }) => {
     }
   };
 
+  const toggleDescription = () => {
+    setShowFullDescription(!showFullDescription);
+  };
+
   return (
-    <Container className={`${styles.cardMargin} bg-secondary mb-4`}>
+    <Container key={company.id} className={`${styles.cardMargin} bg-secondary mb-4`}>
       <Row className="justify-content-center">
         <Row className="mb-1">
           <Col className={`${styles.compName} border-bottom`}>
-            {companyName}
+            {company.companyName}
           </Col>
         </Row>
       </Row>
       <Row className="justify-content-center fs-4">
         <Row>
           <Col className="mb-1">
-            <span className="fw-bold">Location:</span> {location}
+            <span className="fw-bold">Location:</span> {company.location}
           </Col>
         </Row>
         <Row>
           <Col className="mb-1">
-            <span className="fw-bold">Email:</span> {email}
+            <span className="fw-bold">Email:</span> {company.email}
           </Col>
         </Row>
         <Row>
           <Col className="mb-1">
-            <span className="fw-bold">Phone:</span> {phone}
+            <span className="fw-bold">Phone:</span> {company.phone}
           </Col>
         </Row>
         <Row>
           <Col className="mb-1">
-            <span className="fw-bold">Description:</span> {description}
+            <span className="fw-bold">Description:</span> 
+            {showFullDescription ? (
+              <>
+                {company.description} 
+                <Button variant="link" onClick={toggleDescription} style={{ color: 'white' }}>See less</Button>
+              </>
+            ) : (
+              <>
+                {company.description.length > 100 
+                  ? `${company.description.substring(0, 100)}...` 
+                  : company.description
+                } 
+                {company.description.length > 100 && (
+                  <Button variant="link" onClick={toggleDescription} style={{ color: 'white' }}>See more</Button>
+                )}
+              </>
+            )}
           </Col>
         </Row>
         <Row>
-          <Col>
-            <Button
-              variant="dark"
-              className={`${styles.apply} mb-1`}
-              onClick={handleApplyClick}
-            >
+          <Col className="mb-1">
+            <span className="fw-bold">Salary:</span> {company.salary}
+          </Col>
+        </Row>
+        <Row>
+          <Col className="mb-1">
+            <span className="fw-bold">Internship Type:</span> {company.internshipType}
+          </Col>
+        </Row>
+        <Row>
+          <Col className="mb-1">
+            <span className="fw-bold">Duration:</span> {company.duration}
+          </Col>
+        </Row>
+        <Row>
+          <Col className="mb-1">
+            <span className="fw-bold">Application Deadline:</span> {company.applicationDeadline}
+          </Col>
+        </Row>
+        <Row>
+          <Col className="d-flex gap-2">
+            <Button variant="dark" className={`${styles.apply} mb-1`} onClick={() => handleApplyClick(company.id)}>
               Apply
             </Button>
           </Col>
@@ -69,4 +104,4 @@ const CompanyBody: React.FC<CompanyBodyProps> = ({ company }) => {
   );
 };
 
-export default CompanyBody;
+export default InternshipBody;

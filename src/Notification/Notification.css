@@ -1,0 +1,50 @@
+.bottomSpace {
+  margin-bottom: 360px;
+}
+
+.notify {
+  color: rgb(250, 48, 48);
+  margin-bottom: 110px !important;
+}
+
+.notification-page {
+  margin-top: 20px;
+}
+
+.notification-card {
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.notification-card .card-body {
+  padding: 20px;
+}
+
+.notification-card .card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.notification-card .card-subtitle {
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.notification-card .card-text {
+  margin-top: 10px;
+  font-size: 0.875rem;
+}
+
+.notification-card .card-text strong {
+  font-weight: 600;
+}
+
+.notification-card .card-text a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.notification-card .card-text a:hover {
+  text-decoration: underline;
+}
+

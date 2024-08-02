@@ -1,30 +1,39 @@
-// src/components/SignUp.tsx
-
 import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button, Alert, InputGroup } from 'react-bootstrap';
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  Button,
+  Alert,
+  InputGroup,
+  Spinner,
+} from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
-import { auth, googleProvider } from '../firebase/config';
+import { auth, db, googleProvider } from '../firebase/config';
 import {
   createUserWithEmailAndPassword,
   updateProfile,
   signInWithPopup,
-  GoogleAuthProvider,
 } from 'firebase/auth';
-import { FcGoogle } from 'react-icons/fc'; // Import the Google icon
-import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import the visibility icons
+import { doc, setDoc } from 'firebase/firestore';
+import { FcGoogle } from 'react-icons/fc';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import './SignUp.css';
 
 const SignUp: React.FC = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [companyName, setCompanyName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
+  const [role, setRole] = useState<'student' | 'company'>('student');
   const [error, setError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+  const [loading, setLoading] = useState(false); // Add loading state
   const history = useHistory();
 
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -37,35 +46,49 @@ const SignUp: React.FC = () => {
       setError('Passwords do not match.');
       return;
     }
+    setLoading(true); // Set loading to true when sign up starts
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
-      // Optionally update the user's profile
       if (userCredential.user) {
-        await updateProfile(userCredential.user, {
-          displayName: `${firstName} ${lastName}`,
+        const displayName =
+          role === 'company' ? companyName : `${firstName} ${lastName}`;
+        await updateProfile(userCredential.user, { displayName });
+        await setDoc(doc(db, 'users', userCredential.user.uid), {
+          firstName,
+          lastName,
+          companyName,
+          role,
         });
       }
       history.push('/internships');
     } catch (error: any) {
       setError(error.message);
+    } finally {
+      setLoading(false); // Set loading to false when sign up ends
     }
   };
 
   const handleGoogleSignUp = async () => {
+    setLoading(true); // Set loading to true when sign up starts
     try {
       const result = await signInWithPopup(auth, googleProvider);
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential?.accessToken;
-      // The signed-in user info.
       const user = result.user;
+      const displayName = role === 'company' ? companyName : user.displayName;
+      await setDoc(doc(db, 'users', user.uid), {
+        firstName: role === 'company' ? null : user.displayName?.split(' ')[0],
+        lastName: role === 'company' ? null : user.displayName?.split(' ')[1],
+        companyName: role === 'company' ? companyName : null,
+        role,
+      });
       history.push('/internships');
     } catch (error: any) {
       setError(error.message);
+    } finally {
+      setLoading(false); // Set loading to false when sign up ends
     }
   };
 
@@ -89,7 +112,7 @@ const SignUp: React.FC = () => {
       fluid
       className="outer-container d-flex flex-column justify-content-center align-items-center min-vh-100"
     >
-      <div className="text-center mb-1 ">
+      <div className="text-center mb-1">
         <Link to="/" className="text-decoration-none">
           <h1 className="text-primary">PAID-INTERNSHIP</h1>
         </Link>
@@ -100,26 +123,66 @@ const SignUp: React.FC = () => {
             <h2 className="text-center mb-4">Sign Up</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSignUp}>
-              <Form.Group controlId="formFirstName" className="mb-3">
-                <Form.Label>First Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter first name"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  required
-                />
+              <Form.Group controlId="formRole" className="mb-3">
+                <Form.Label>Sign Up As</Form.Label>
+                <div>
+                  <Form.Check
+                    inline
+                    type="radio"
+                    label="Student"
+                    value="student"
+                    checked={role === 'student'}
+                    onChange={(e) =>
+                      setRole(e.target.value as 'student' | 'company')
+                    }
+                  />
+                  <Form.Check
+                    inline
+                    type="radio"
+                    label="Company"
+                    value="company"
+                    checked={role === 'company'}
+                    onChange={(e) =>
+                      setRole(e.target.value as 'student' | 'company')
+                    }
+                  />
+                </div>
               </Form.Group>
-              <Form.Group controlId="formLastName" className="mb-3">
-                <Form.Label>Last Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter last name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  required
-                />
-              </Form.Group>
+              {role === 'company' ? (
+                <Form.Group controlId="formCompanyName" className="mb-3">
+                  <Form.Label>Company Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter company name"
+                    value={companyName}
+                    onChange={(e) => setCompanyName(e.target.value)}
+                    required
+                  />
+                </Form.Group>
+              ) : (
+                <>
+                  <Form.Group controlId="formFirstName" className="mb-3">
+                    <Form.Label>First Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter first name"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      required
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="formLastName" className="mb-3">
+                    <Form.Label>Last Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter last name"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      required
+                    />
+                  </Form.Group>
+                </>
+              )}
               <Form.Group controlId="formEmail" className="mb-3">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
@@ -189,23 +252,38 @@ const SignUp: React.FC = () => {
                   </Link>
                 </Form.Text>
               </div>
-              <Button variant="primary" type="submit" className="w-100 mb-2">
+              <Button
+                variant="primary"
+                type="submit"
+                className="w-100 mb-2"
+                disabled={loading} // Disable button while loading
+              >
+                {loading ? (
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                    className="me-2"
+                  />
+                ) : null}
                 Sign Up
               </Button>
-              <div className="d-flex align-items-center my-3">
-                <hr className="flex-grow-1" />
-                <span className="mx-2 text-muted">Or with</span>
-                <hr className="flex-grow-1" />
-              </div>
-              <Button
-                variant="outline-danger"
-                onClick={handleGoogleSignUp}
-                className="w-100 d-flex align-items-center justify-content-center"
-              >
-                <FcGoogle className="me-2" />
-                Sign Up with Google
-              </Button>
             </Form>
+            <div className="d-flex align-items-center my-3">
+              <hr className="flex-grow-1" />
+              <span className="mx-2 text-muted">Or with</span>
+              <hr className="flex-grow-1" />
+            </div>
+            <Button
+              variant="outline-primary"
+              className="w-100 mb-2"
+              onClick={handleGoogleSignUp}
+              disabled={loading} // Disable button while loading
+            >
+              <FcGoogle /> Sign Up with Google
+            </Button>
           </div>
         </Col>
       </Row>

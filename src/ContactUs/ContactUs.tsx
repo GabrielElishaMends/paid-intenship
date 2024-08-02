@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 import './ContactUs.css';
 
 const ContactUs: React.FC = () => {
@@ -53,11 +52,6 @@ const ContactUs: React.FC = () => {
               >
                 <FaInstagram />
               </a>
-            </div>
-            <div className="mt-4">
-              <Link to="/addcompany" className="btn btn-primary">
-                Add Your Company
-              </Link>
             </div>
           </Col>
         </Row>

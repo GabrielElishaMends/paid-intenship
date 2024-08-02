@@ -1,0 +1,14 @@
+[
+  {
+    "id": "1",
+    "companyName": "Tech Innovators Inc.",
+    "location": "San Francisco, CA",
+    "email": "careers@techinnovators.com",
+    "phone": "+1-123-456-7890",
+    "description": "Join our team as an intern and work on cutting-edge technology projects. Gain hands-on experience and work with industry experts.",
+    "salary": "$2000",
+    "internshipType": "Full-Time",
+    "duration": "3 months",
+    "applicationDeadline": "2024-08-31"
+  }
+]

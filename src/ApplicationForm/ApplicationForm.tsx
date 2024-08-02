@@ -1,11 +1,20 @@
+// src/components/ApplicationForm.tsx
+
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  Button,
+  Alert,
+  Spinner,
+} from 'react-bootstrap';
 import { useHistory, useLocation, Link } from 'react-router-dom';
 import { addDoc, collection } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db, auth } from '../firebase/config';
-import styles from '../styles.module.css';
 import './ApplicationForm.css';
 
 const ApplicationForm: React.FC = () => {
@@ -30,12 +39,17 @@ const ApplicationForm: React.FC = () => {
   });
   const [alert, setAlert] = useState<string | null>(null);
   const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
 
   const storage = getStorage();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setFormData((prevData) => ({
+        ...prevData,
+        email: currentUser?.email || '',
+      }));
     });
     return () => unsubscribe();
   }, []);
@@ -82,46 +96,59 @@ const ApplicationForm: React.FC = () => {
       return;
     }
 
+    setLoading(true);
+
     try {
-      setAlert(null); // Clear any previous alerts
+      setAlert(null);
       let resumeUrl = '';
       const certificationUrls: string[] = [];
 
       if (formData.resume) {
-        console.log('Uploading resume...');
         resumeUrl = await uploadFile(
           formData.resume,
           `resumes/${formData.resume.name}`
         );
-        console.log('Resume uploaded:', resumeUrl);
       }
 
       for (const certification of formData.certifications) {
-        console.log('Uploading certification:', certification.name);
         const certificationUrl = await uploadFile(
           certification,
           `certifications/${certification.name}`
         );
         certificationUrls.push(certificationUrl);
-        console.log('Certification uploaded:', certificationUrl);
       }
 
       const applicationData = {
         ...formData,
         resume: resumeUrl,
         certifications: certificationUrls,
+        email: user.email,
       };
 
-      console.log('Submitting application data:', applicationData);
-      await addDoc(collection(db, 'applications'), applicationData);
-      console.log('Application submitted successfully');
+      const applicationRef = await addDoc(
+        collection(db, 'applications'),
+        applicationData
+      );
+
+      await addDoc(collection(db, 'notifications'), {
+        companyId: formData.companyIdentifier,
+        studentId: user.uid,
+        internshipId: applicationRef.id,
+        studentName: formData.fullName,
+        studentEmail: formData.email,
+        applicationDate: new Date(),
+        ...applicationData,
+      });
+
       setAlert('Application submitted successfully!');
       setTimeout(() => {
-        history.push('/internships');
+        history.push('/internships'); // Redirect to the internships page after 2 seconds
       }, 2000);
     } catch (error) {
       console.error('Error adding document: ', error);
       setAlert('Failed to submit application. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -138,7 +165,7 @@ const ApplicationForm: React.FC = () => {
             </Link>
           </div>
           <div className="application-form p-4 rounded shadow">
-            <h2 className="text-center">APPLICATION FORM</h2>
+            <h2 className="text-center">APPLY INTERNSHIP FORM</h2>
             <hr className="mb-4" />
             {alert && (
               <Alert
@@ -188,7 +215,6 @@ const ApplicationForm: React.FC = () => {
                   required
                 />
               </Form.Group>
-
               <Form.Group controlId="degreeProgram" className="mb-3">
                 <Form.Label>Degree Program</Form.Label>
                 <Form.Control
@@ -236,17 +262,28 @@ const ApplicationForm: React.FC = () => {
                 <Form.Control type="file" multiple onChange={handleChange} />
               </Form.Group>
               <Form.Group controlId="experience" className="mb-3">
-                <Form.Label>Previous Internship/Work Experience</Form.Label>
+                <Form.Label>Previous Internship Experience</Form.Label>
                 <Form.Control
                   as="textarea"
                   rows={3}
-                  placeholder="Describe your experience"
+                  placeholder="Describe your experience if you have had any internship before"
                   value={formData.experience}
                   onChange={handleChange}
                 />
               </Form.Group>
-              <Button variant="primary" type="submit" className="w-100">
-                Submit
+              <Button
+                variant="primary"
+                type="submit"
+                className="w-100"
+                disabled={loading}
+              >
+                {loading ? (
+                  <>
+                    <Spinner animation="border" size="sm" /> Submitting...
+                  </>
+                ) : (
+                  'Submit'
+                )}
               </Button>
             </Form>
           </div>

@@ -1,8 +1,9 @@
 // src/firebase/config.ts
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
+import scrapedData from '../data/internships.json';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyApn0nASMqIP7jErDRt4CtGV6uLcyazSeQ',
@@ -19,4 +20,21 @@ const db = getFirestore(app);
 const storage = getStorage(app);
 const googleProvider = new GoogleAuthProvider();
 
-export { auth, db, storage, googleProvider };
+const uploadScrapedData = async () => {
+  const companiesCollection = collection(db, 'companies');
+
+  for (const company of scrapedData) {
+    try {
+      await addDoc(companiesCollection, company);
+      console.log(`Company ${company.companyName} added successfully`);
+    } catch (error) {
+      console.error(`Error adding company ${company.companyName}:`, error);
+    }
+  }
+  console.log('All scraped data uploaded to Firestore');
+};
+
+// Uncomment the following line to run the upload script immediately when the file is loaded
+// uploadScrapedData();
+
+export { auth, db, storage, googleProvider, uploadScrapedData };

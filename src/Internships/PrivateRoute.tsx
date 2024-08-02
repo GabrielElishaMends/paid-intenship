@@ -1,6 +1,9 @@
+// src/Internships/PrivateRoute.tsx
+
 import React from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 import { useAuth } from './AuthContext';
+import LoginFirst from './LoginFirst';
 
 interface PrivateRouteProps extends RouteProps {
   component: React.ComponentType<any>;
@@ -16,7 +19,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ component: Component, ...re
         currentUser ? (
           <Component {...props} />
         ) : (
-          <Redirect to="/login" />
+          <LoginFirst message="You must be logged in to access this page." />
         )
       }
     />

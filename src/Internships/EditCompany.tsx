@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button, Spinner, Alert } from 'react-bootstrap';
-import { Link, useHistory } from 'react-router-dom';
-import { collection, addDoc } from 'firebase/firestore';
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
-import { useAuth } from './AuthContext'; // Adjust the import path as necessary
+import { useAuth } from './AuthContext';
 import styles from '../styles.module.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import './AddCompany.css';
-import LoginFirst from './LoginFirst'; // Import the new component
+import LoginFirst from './LoginFirst';
 
-const AddCompany: React.FC = () => {
+const EditCompany: React.FC = () => {
+  const { state } = useLocation<{ companyId: string }>();
+  const companyId = state?.companyId || '';
   const [companyName, setCompanyName] = useState('');
   const [location, setLocation] = useState('');
   const [email, setEmail] = useState('');
@@ -20,20 +22,44 @@ const AddCompany: React.FC = () => {
   const [duration, setDuration] = useState('');
   const [applicationDeadline, setApplicationDeadline] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false); // Add loading state
   const { currentUser, userRole } = useAuth();
   const history = useHistory();
+
+  useEffect(() => {
+    const fetchCompanyData = async () => {
+      if (companyId) {
+        const docRef = doc(db, 'companies', companyId);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const companyData = docSnap.data();
+          setCompanyName(companyData.companyName);
+          setLocation(companyData.location);
+          setEmail(companyData.email);
+          setPhone(companyData.phone);
+          setDescription(companyData.description);
+          setSalary(companyData.salary);
+          setInternshipType(companyData.internshipType);
+          setDuration(companyData.duration);
+          setApplicationDeadline(companyData.applicationDeadline);
+        } else {
+          setError('Company not found');
+        }
+      }
+    };
+
+    fetchCompanyData();
+  }, [companyId]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!currentUser) {
-      setError('You must be logged in to add a company.');
+      setError('You must be logged in to edit a company.');
       return;
     }
 
-    setLoading(true); // Set loading to true when form is submitted
     try {
-      await addDoc(collection(db, 'companies'), {
+      const docRef = doc(db, 'companies', companyId);
+      await updateDoc(docRef, {
         companyName,
         location,
         email,
@@ -43,18 +69,15 @@ const AddCompany: React.FC = () => {
         internshipType,
         duration,
         applicationDeadline,
-        ownerId: currentUser.uid // Include ownerId from the current user
       });
       history.push('/internships');
     } catch (error: any) {
       setError(error.message);
-    } finally {
-      setLoading(false); // Reset loading state after submission
     }
   };
 
   if (!currentUser) {
-    return <LoginFirst message="You must be logged in to add a company." />;
+    return <LoginFirst message="You must be logged in to edit a company." />;
   }
 
   if (userRole !== 'company') {
@@ -68,9 +91,13 @@ const AddCompany: React.FC = () => {
               </Link>
             </div>
             <div className="add-company-container">
-              <h2 className="text-center mb-2 add-company-heading">Access Denied</h2>
+              <h2 className="text-center mb-2 add-company-heading">
+                Access Denied
+              </h2>
               <hr className="my-2 mb-4" />
-              <p className="text-center">Only users with a company role can add a company.</p>
+              <p className="text-center">
+                Only users with a company role can edit a company.
+              </p>
             </div>
           </Col>
         </Row>
@@ -88,7 +115,7 @@ const AddCompany: React.FC = () => {
             </Link>
           </div>
           <div className="add-company-container">
-            <h2 className="text-center mb-2 add-company-heading">ADD INTERNSHIP FORM</h2>
+            <h2 className="text-center mb-2 add-company-heading">EDIT INTERNSHIP FORM</h2>
             <hr className="my-2 mb-4" />
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit} className="add-company-form">
@@ -179,19 +206,8 @@ const AddCompany: React.FC = () => {
                   onChange={(e) => setApplicationDeadline(e.target.value)}
                 />
               </Form.Group>
-              <Button
-                variant="primary"
-                type="submit"
-                className="w-100 mt-3"
-                disabled={loading} // Disable button when loading
-              >
-                {loading ? (
-                  <>
-                    <Spinner animation="border" size="sm" /> Submitting...
-                  </>
-                ) : (
-                  'Submit'
-                )}
+              <Button variant="primary" type="submit" className="w-100 mt-3">
+                Update
               </Button>
             </Form>
           </div>
@@ -201,4 +217,4 @@ const AddCompany: React.FC = () => {
   );
 };
 
-export default AddCompany;
+export default EditCompany;

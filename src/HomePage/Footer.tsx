@@ -1,3 +1,4 @@
+// src/components/Footer.tsx
 import React from 'react';
 import styles from '../styles.module.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -6,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <Container fluid className="bg-dark text-white">
+    <Container fluid className={`bg-dark text-white ${styles.footer}`}>
       <Row className="mb-4">
         <Col>
           <Row className="fw-bold mb-4 ml-1">CONTACT US</Row>
@@ -15,7 +16,7 @@ const Footer = () => {
           </Row>
           <Row className="fw-light mb-3">KUMASI, AYEDUASE</Row>
           <Row className="fw-light">PHONE: +233-000-111-222</Row>
-          <Row className="fw-light">EMAIL: PAIDINTENSHIP@GMAIL.COM</Row>
+          <Row className="fw-light">EMAIL: paidinternship3@gmail.com</Row>
         </Col>
         <Col>
           <Row className="fw-bold mb-4">MENU</Row>
@@ -26,7 +27,7 @@ const Footer = () => {
           </Row>
           <Row className="fw-light mb-2">
             <Link to="/internships" className={styles.footlink}>
-              COMPANIES
+              INTERNSHIPS
             </Link>
           </Row>
           <Row className="fw-light mb-2">

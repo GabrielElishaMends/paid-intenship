@@ -1,13 +1,15 @@
+// src/CompanyPage.tsx
 import React, { useEffect, useState } from 'react';
-import { fetchCompanies, CompanyInfo } from './data/companyData';
+import { CompanyInfo, fetchCompanies } from './data/companyData';
 import CompanyBody from './Internships/InternshipBody';
-import { Container } from 'react-bootstrap';
+import { Container, Spinner } from 'react-bootstrap';
 import InternshipHeader from './Internships/InternshipHeader';
 import MarginBelowHeader from './Internships/MarginBelowHeader';
 import Footer from './HomePage/Footer';
 
-const CompanyPage: React.FC = () => {
+const InternshipPage: React.FC = () => {
   const [companies, setCompanies] = useState<CompanyInfo[]>([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -17,6 +19,8 @@ const CompanyPage: React.FC = () => {
         setCompanies(data);
       } catch (error: any) {
         setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -24,18 +28,26 @@ const CompanyPage: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <div className="d-flex flex-column min-vh-100">
       <InternshipHeader />
       <MarginBelowHeader />
-      <Container>
-        {error && <p className="text-danger">{error}</p>}
-        {companies.map((company, index) => (
-          <CompanyBody key={index} company={company} />
-        ))}
-      </Container>
+      <main className="main-content">
+        <Container>
+          {error && <p className="text-danger">{error}</p>}
+          {loading ? (
+            <div className="d-flex justify-content-center align-items-center min-vh-100">
+              <Spinner animation="border" variant="primary" />
+            </div>
+          ) : (
+            companies.map((company, index) => (
+              <CompanyBody key={index} company={company} />
+            ))
+          )}
+        </Container>
+      </main>
       <Footer />
-    </>
+    </div>
   );
 };
 
-export default CompanyPage;
+export default InternshipPage;
