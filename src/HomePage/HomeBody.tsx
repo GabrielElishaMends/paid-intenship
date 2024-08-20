@@ -7,17 +7,17 @@ const HomeBody = () => {
     <Container fluid className={`${styles.containerWithMargin} overflow-hidden`}>
       <Row>
         <Col>
-          <Image src="./image/imgHome1.jpg" className={styles.negmarginLeft} />
+          <Image src="./image/imgHome3.jpg" className={styles.negmarginLeft} />
         </Col>
       </Row>
       <Row>
         <Col>
-          <p className={`${styles.onImage} text-white w-100 text-center`}>APPLY FOR PAID INTERNSHIPS HERE</p>
+          <p className={`${styles.onImage} w-100 text-left`}>APPLY FOR PAID INTERNSHIPS HERE</p>
         </Col>
       </Row>
       <Row>
         <Col>
-          <p className={`${styles.onSubImage} ${styles.noTextWrap} text-white w-100 text-center`}>Bridging the gap between Students and Companies</p>
+          <p className={`${styles.onSubImage} ${styles.noTextWrap} w-100 text-left`}>Bridging the gap between Students and Companies</p>
         </Col>
       </Row>
     </Container>

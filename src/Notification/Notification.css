@@ -2,6 +2,10 @@
   margin-bottom: 360px;
 }
 
+.marginbtm {
+  margin-bottom: 120px !important;
+}
+
 .notify {
   color: rgb(250, 48, 48);
   margin-bottom: 110px !important;

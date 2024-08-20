@@ -54,7 +54,7 @@ const HomeHeader = () => {
   return (
     <Container
       fluid
-      className={`${styles.customHeight} d-flex align-items-center bg-dark`}
+      className={`${styles.customHeader} d-flex align-items-center`}
     >
       <Row className="d-flex align-items-center text-white w-100">
         <Col className={`${styles.logo} fs-2 fw-bold`}>
@@ -79,18 +79,18 @@ const HomeHeader = () => {
               Internships
             </NavLink>
             <NavLink
-              to="/contactus"
-              className={`${styles.link} ${styles.noWrap} fs-5`}
-              activeClassName={styles.activeLink}
-            >
-              Contact Us
-            </NavLink>
-            <NavLink
               to="/about"
               className={`${styles.link} fs-5`}
               activeClassName={styles.activeLink}
             >
               About
+            </NavLink>
+            <NavLink
+              to="/contactus"
+              className={`${styles.link} ${styles.noWrap} fs-5`}
+              activeClassName={styles.activeLink}
+            >
+              Contact Us
             </NavLink>
             {!currentUser && (
               <>

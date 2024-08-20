@@ -68,9 +68,10 @@ const InternshipHeader = () => {
   return (
     <Container
       fluid
-      className={`${styles.customHeight} d-flex align-items-center bg-dark`}
+      className={`${styles.customHeader} d-flex align-items-center`}
     >
-      <Row noGutters className="d-flex align-items-center text-white w-100">
+      <Row noGutters className="d-flex align-items-center w-100">
+        {/* text-white */}
         <Col className={`${styles.logo} fs-2 fw-bold`}>
           <NavLink to="/" className={styles.logoLink} exact>
             PAID-INTERNSHIP
@@ -93,18 +94,18 @@ const InternshipHeader = () => {
               Internship
             </NavLink>
             <NavLink
-              to="/contactus"
-              className={`${styles.link} ${styles.noWrap} fs-5`}
-              activeClassName={styles.activeLink}
-            >
-              Contact Us
-            </NavLink>
-            <NavLink
               to="/about"
               className={`${styles.link} fs-5`}
               activeClassName={styles.activeLink}
             >
               About
+            </NavLink>
+            <NavLink
+              to="/contactus"
+              className={`${styles.link} ${styles.noWrap} fs-5`}
+              activeClassName={styles.activeLink}
+            >
+              Contact Us
             </NavLink>
           </div>
         </Col>

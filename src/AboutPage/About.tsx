@@ -43,7 +43,7 @@ const About: React.FC = () => {
       <Row className="justify-content-center">
         {teamMembers.map((member, index) => (
           <Col key={index} md={4} xs={8} className="mb-4">
-            <Card>
+            <Card className="cardShadow">
               <Card.Img variant="top" src={member.image} />
               <Card.Body>
                 <Card.Title>Team Member {index + 1}: {member.name}</Card.Title>

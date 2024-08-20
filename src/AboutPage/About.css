@@ -1,5 +1,10 @@
 .aboutbg {
-  background-color: #cad0d6;
+  /* background-color: #cad0d6; */
+}
+
+.cardShadow {
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .container {

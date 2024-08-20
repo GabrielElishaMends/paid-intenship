@@ -27,7 +27,7 @@ const InternshipBody: React.FC<CompanyBodyProps> = ({ company }) => {
   };
 
   return (
-    <Container key={company.id} className={`${styles.cardMargin} bg-secondary mb-4`}>
+    <Container key={company.id} className={`${styles.cardMargin} mb-4`}>
       <Row className="justify-content-center">
         <Row className="mb-1">
           <Col className={`${styles.compName} border-bottom`}>
@@ -35,7 +35,7 @@ const InternshipBody: React.FC<CompanyBodyProps> = ({ company }) => {
           </Col>
         </Row>
       </Row>
-      <Row className="justify-content-center fs-4">
+      <Row className="justify-content-center fs-5">
         <Row>
           <Col className="mb-1">
             <span className="fw-bold">Location:</span> {company.location}
@@ -53,7 +53,7 @@ const InternshipBody: React.FC<CompanyBodyProps> = ({ company }) => {
         </Row>
         <Row>
           <Col className="mb-1">
-            <span className="fw-bold">Description:</span> 
+            <span className="fw-bold">Description: </span> 
             {showFullDescription ? (
               <>
                 {company.description} 

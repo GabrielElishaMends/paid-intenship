@@ -14,7 +14,7 @@ const ContactUs: React.FC = () => {
           <Col xs={12} className="contact-details">
             <h4>Author: Gabriel Elisha Mends</h4>
             <p>Phone: +233-000-111-222</p>
-            <p>Email: paidinternship@gmail.com</p>
+            <p>Email: paidinternship3@gmail.com</p>
             <p>
               Location: Kwame Nkrumah University of Science and Technology,
               Kumasi, Ghana

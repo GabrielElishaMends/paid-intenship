@@ -1,269 +1,277 @@
-  .apply {
-    width: 100px;
-    background-color: lawngreen;
-  }
+.apply {
+  width: 100px;
+  background-color: lawngreen;
+}
 
-  .backColor {
-    background-color: #eff1f4;
-  }
+.backColor {
+  background-color: #eff1f4;
+}
 
-  .belowHeaderMargin {
-    margin-bottom: 100px;
-  }
+.belowHeaderMargin {
+  margin-bottom: 100px;
+}
 
-  body, html {
-    height: 100%;
-  }
+body,
+html {
+  height: 100%;
+}
 
-  .compName {
-    font-weight: bold;
-    font-size: 35px;
-  }
+body {
+  overflow-x: hidden;
+}
 
-  .cardMargin {
-    margin-bottom: 20px;
-    border-radius: 10px;
-    padding: 20px;
-  }
+.compName {
+  font-weight: bold;
+  font-size: 35px;
+}
 
-  .containerWithMargin {
-    margin-top: 80px;
-  }
+.cardMargin {
+  margin-bottom: 20px;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: rgb(192, 191, 191);
+}
 
-  .customHeight {
-    height: 100px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-  }
+.containerWithMargin {
+  margin-top: 80px;
+  overflow-x: hidden !important;
+}
 
+.customHeader {
+  background-color: #373b41;
+  height: 100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
 
-  .dropdown-item {
-    color: black;
-    transition: background-color 0.2s, color 0.2s;
-  }
+.dropdown-item {
+  color: black;
+  transition: background-color 0.2s, color 0.2s;
+}
 
-  .dropdown-item:hover {
-    background-color: rgb(220, 214, 214);
-    color: black;
-  }
+.dropdown-item:hover {
+  background-color: rgb(220, 214, 214);
+  color: black;
+}
 
-  .dropdown-menu {
-    background-color: #ffffff;
-    border: none;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-  }
+.dropdown-menu {
+  background-color: #ffffff;
+  border: none;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
 
-  .dropdownMenu {
-    margin-top: -0.5rem;
-  }
+.dropdownMenu {
+  margin-top: -0.5rem;
+}
 
-  .dropdown-toggle::after {
-    display: none;
-  }
+.dropdown-toggle::after {
+  display: none;
+}
 
-  .footer {
-    background-color: #343a40;
-    color: white;
-    padding: 1rem;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-  }
+.footer {
+  background-color: #373b41;
+  color: white;
+  padding: 1rem;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
 
-  .footlink {
-    color: white;
-    text-decoration: none;
-    margin-left: -13px;
-    font-size: 16px;
-  }
+.footlink {
+  color: white;
+  text-decoration: none;
+  margin-left: -13px;
+  font-size: 16px;
+}
 
-  .hoverBold {
-    width: 10px;
-    padding-left: 500px;
-    /* padding-left: 20px; */
-    text-align: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    transition: font-weight 0.1s;
-  }
+.hoverBold {
+  width: 10px;
+  padding-left: 500px;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  transition: font-weight 0.1s;
+}
 
-  .hoverBold:hover {
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-  }
+.hoverBold:hover {
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-  .link {
-    color: white;
-    font-weight: lighter;
-    text-decoration: none;
-    margin-left: 20px;
-    transition: font-weight 0.2s;
-  }
+.link {
+  color: white;
+  font-weight: lighter;
+  text-decoration: none;
+  margin-left: 20px;
+  transition: font-weight 0.2s;
+}
 
-  .link:first-child {
-    margin-left: 0;
-  }
+.link:first-child {
+  margin-left: 0;
+}
 
-  .link:hover {
-    text-decoration: underline;
-  }
+.link:hover {
+  text-decoration: underline;
+}
 
-  .activeLink {
-    /* text-decoration: underline; */
-    font-weight: bold;
-  }
+.activeLink {
+  font-weight: bold;
+}
 
-  .logInLink {
-    background-color: rgb(157, 149, 149);
-    padding: 0px 5px;
-    border-radius: 8px;
-    padding:0px 10px;
-    margin-right: -15px;
-    transition: 0.2s ease-in;
-  }
+.logInLink {
+  background-color: rgb(157, 149, 149);
+  padding: 0px 5px;
+  border-radius: 8px;
+  padding: 0px 10px;
+  margin-right: -15px;
+  transition: 0.2s ease-in;
+}
 
-  .logInLink:hover {
-    text-decoration: none;
-    background-color: rgb(122, 116, 116);
-  }
+.logInLink:hover {
+  text-decoration: none;
+  background-color: rgb(122, 116, 116);
+}
 
-  .logoLink {
-    color: white;
-    text-decoration: none;
-  }
+.logoLink {
+  color: white;
+  text-decoration: none;
+}
 
-  .logoLink:hover {
-    text-decoration: none;
-  }
+.logoLink:hover {
+  text-decoration: none;
+}
 
-  .logo:hover {
-    cursor: default;
-  }
+.logo:hover {
+  cursor: default;
+}
 
-  .main-content {
-    flex: 1;
-  }
+.main-content {
+  flex: 1;
+}
 
-  .marginBelowHeader {
-    margin-bottom: 120px;
-  }
+.marginBelowHeader {
+  margin-bottom: 120px;
+}
 
-  .navLinks {
-    display: flex;
-    align-items: center;
-    /* gap: 20px; */
-  }
+.navLinks {
+  display: flex;
+  align-items: center;
+}
 
-  .negmarginLeft {
-    margin-left: -12px;
-    position: relative;
-    z-index: -1;
-  }
+.negmarginLeft {
+  margin-left: -20px;
+  margin-top: 17px;
+  position: relative;
+  z-index: -1;
+}
 
-  .noWrap {
-    white-space: nowrap;
-  }
+.noWrap {
+  white-space: nowrap;
+}
 
-  .onImage {
-    font-size: 50px;
-    font-weight: bolder;
-    text-shadow: 3px 3px 2px black;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-  }
+.onImage {
+  font-size: 50px;
+  font-weight: bolder;
+  color: #2f343a;
+  text-shadow: 2px 2px 1px rgb(102, 97, 97);
+  position: absolute;
+  top: 115%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
 
-  .onSubImage {
-    font-size: 30px;
-    text-shadow: 1px 2px 3px black;
-    position: absolute;
-    top: 65%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-  }
+.onSubImage {
+  font-size: 30px;
+  color: #2f343a;
+  text-shadow: 1px 1px 2px rgb(102, 97, 97);
+  position: absolute;
+  top: 123%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
 
-  .paddingLeft {
-    padding-left: 100px;
-  }
+.paddingLeft {
+  padding-left: 100px;
+}
 
-  #root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-  }
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
 
-  .sign {
-    color: black;
-    text-decoration: none;
-  }
+.sign {
+  color: black;
+  text-decoration: none;
+}
 
-  .signUp:hover .sign {
-    color: white;
-  }
+.signUp:hover .sign {
+  color: white;
+}
 
-  .signUp {
-    color: black;
-    text-align: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    background-color: white;
-    font-weight: bold;
-    border-radius: 10px;
-    transition: font-weight, background-color 0.3s;
-  }
+.signUp {
+  color: black;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  transition: font-weight, background-color 0.3s;
+}
 
-  .signUp:hover {
-    background-color: rgb(33, 37, 41);
-    outline: 1px solid white;
-    cursor: pointer;
-  }
+.signUp:hover {
+  background-color: rgb(33, 37, 41);
+  outline: 1px solid white;
+  cursor: pointer;
+}
 
+.signUpLink {
+  color: black;
+  background-color: rgb(255, 255, 255);
+  padding: 0px 5px;
+  border-radius: 8px;
+  transition: 0.2s ease-in;
+}
 
-  .signUpLink {
-    color: black;
-    background-color: rgb(255, 255, 255);
-    padding: 0px 5px;
-    border-radius: 8px;
-    transition: 0.2s ease-in;
-  }
+.signUpLink:hover {
+  text-decoration: none;
+  background-color: rgb(220, 214, 214);
+}
 
-  .signUpLink:hover {
-    text-decoration: none;
-    background-color:rgb(220, 214, 214);
-  }
+.userCircle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50% !important;
+  background-color: white !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black !important;
+  font-weight: bold !important;
+  font-size: 1.2em;
+  cursor: pointer;
+  margin-left: 110px;
+}
 
-  .userCircle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50% !important;
-    background-color: white !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: black !important;
-    font-weight: bold !important;
-    font-size: 1.2em;
-    cursor: pointer;
-    margin-left: 110px;
-  }
+.homeUserCircle {
+  margin-left: 110px;
+}
 
-  .homeUserCircle {
-    margin-left: 110px;
-  }
+.userCirk {
+  width: 50%;
+  margin-right: -50px;
+  margin-left: -70px;
+}
 
-  .userCirk {
-    width: 50%;
-    margin-right: -50px;
-    margin-left: -70px;
-  }
-
-  .userCirk:hover {
-    cursor: pointer;
-  }
+.userCirk:hover {
+  cursor: pointer;
+}

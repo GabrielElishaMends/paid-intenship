@@ -33,7 +33,6 @@ const Notification: React.FC = () => {
         try {
           console.log('Fetching company for user:', currentUser.uid);
 
-          // Query for the company document based on the ownerId
           const companyQuery = query(
             collection(db, 'companies'),
             where('ownerId', '==', currentUser.uid)
@@ -43,42 +42,39 @@ const Notification: React.FC = () => {
 
           if (!companySnapshot.empty) {
             const companyDoc = companySnapshot.docs[0];
-            const companyId = companyDoc.id; // Get the company document ID
+            const companyId = companyDoc.id;
 
             console.log('Fetching notifications for company ID:', companyId);
 
-            // Query for notifications based on the company ID
             const notificationsQuery = query(
               collection(db, 'notifications'),
-              where('companyId', '==', companyId) // Fetch notifications for the company ID
+              where('companyId', '==', companyId)
             );
 
             const notificationsSnapshot = await getDocs(notificationsQuery);
 
-            const notificationsData: NotificationData[] = notificationsSnapshot.docs.map((doc) => ({
-              id: doc.id,
-              studentName: doc.data().studentName || '',
-              studentEmail: doc.data().studentEmail || '',
-              phone: doc.data().phone || '',
-              currentInstitution: doc.data().currentInstitution || '',
-              degreeProgram: doc.data().degreeProgram || '',
-              yearOfStudy: doc.data().yearOfStudy || '',
-              linkedin: doc.data().linkedin || '',
-              portfolio: doc.data().portfolio || '',
-              experience: doc.data().experience || '',
-              resume: doc.data().resume || '',
-              certifications: doc.data().certifications || [],
-              companyId: doc.data().companyId || '', // Include companyId in the fetched data
-            }));
+            const notificationsData: NotificationData[] =
+              notificationsSnapshot.docs.map((doc) => ({
+                id: doc.id,
+                studentName: doc.data().studentName || '',
+                studentEmail: doc.data().studentEmail || '',
+                phone: doc.data().phone || '',
+                currentInstitution: doc.data().currentInstitution || '',
+                degreeProgram: doc.data().degreeProgram || '',
+                yearOfStudy: doc.data().yearOfStudy || '',
+                linkedin: doc.data().linkedin || '',
+                portfolio: doc.data().portfolio || '',
+                experience: doc.data().experience || '',
+                resume: doc.data().resume || '',
+                certifications: doc.data().certifications || [],
+                companyId: doc.data().companyId || '',
+              }));
 
-            console.log('Notifications Data:', notificationsData);
-            console.log('Number of notifications:', notificationsData.length);
             setNotifications(notificationsData);
           } else {
-            setError('No company found for the current user.');
+            setError('No notifications available.');
           }
         } catch (err) {
-          console.error('Error fetching notifications:', err);
           setError('Failed to load notifications. Please try again later.');
         } finally {
           setLoading(false);
@@ -106,19 +102,18 @@ const Notification: React.FC = () => {
         <Alert variant="danger" className="text-center">
           {error}
         </Alert>
+        <div className="marginbtm"></div>
       </Container>
     );
   }
-
-  console.log('Number of notifications in render:', notifications.length);
 
   return (
     <Container className="notification-page">
       <h1 className="text-center mb-4">Notifications</h1>
       {notifications.length === 0 ? (
-        <h3 className="text-center mb-5 notify">
-          No notifications available.
-        </h3>
+        <>
+          <div className="marginbtm"></div>
+        </>
       ) : (
         <Row>
           {notifications.map((notification) => (
@@ -137,37 +132,65 @@ const Notification: React.FC = () => {
                     )}
                     {notification.currentInstitution && (
                       <>
-                        <strong>Institution:</strong> {notification.currentInstitution} <br />
+                        <strong>Institution:</strong>{' '}
+                        {notification.currentInstitution} <br />
                       </>
                     )}
                     {notification.degreeProgram && (
                       <>
-                        <strong>Degree Program:</strong> {notification.degreeProgram} <br />
+                        <strong>Degree Program:</strong>{' '}
+                        {notification.degreeProgram} <br />
                       </>
                     )}
                     {notification.yearOfStudy && (
                       <>
-                        <strong>Year of Study:</strong> {notification.yearOfStudy} <br />
+                        <strong>Year of Study:</strong>{' '}
+                        {notification.yearOfStudy} <br />
                       </>
                     )}
                     {notification.linkedin && (
                       <>
-                        <strong>LinkedIn:</strong> <a href={notification.linkedin} target="_blank" rel="noopener noreferrer">{notification.linkedin}</a> <br />
+                        <strong>LinkedIn:</strong>{' '}
+                        <a
+                          href={notification.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {notification.linkedin}
+                        </a>{' '}
+                        <br />
                       </>
                     )}
                     {notification.portfolio && (
                       <>
-                        <strong>Portfolio:</strong> <a href={notification.portfolio} target="_blank" rel="noopener noreferrer">{notification.portfolio}</a> <br />
+                        <strong>Portfolio:</strong>{' '}
+                        <a
+                          href={notification.portfolio}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {notification.portfolio}
+                        </a>{' '}
+                        <br />
                       </>
                     )}
                     {notification.experience && (
                       <>
-                        <strong>Experience:</strong> {notification.experience} <br />
+                        <strong>Experience:</strong> {notification.experience}{' '}
+                        <br />
                       </>
                     )}
                     {notification.resume && (
                       <>
-                        <strong>Resume:</strong> <a href={notification.resume} target="_blank" rel="noopener noreferrer">View Resume</a> <br />
+                        <strong>Resume:</strong>{' '}
+                        <a
+                          href={notification.resume}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View Resume
+                        </a>{' '}
+                        <br />
                       </>
                     )}
                     {notification.certifications.length > 0 && (
@@ -175,7 +198,11 @@ const Notification: React.FC = () => {
                         <strong>Certifications:</strong>
                         {notification.certifications.map((certUrl, index) => (
                           <div key={index}>
-                            <a href={certUrl} target="_blank" rel="noopener noreferrer">
+                            <a
+                              href={certUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
                               View Certification {index + 1}
                             </a>
                           </div>
