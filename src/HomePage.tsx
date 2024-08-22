@@ -1,4 +1,3 @@
-import React from 'react';
 import HomeHeader from './HomePage/HomeHeader';
 import HomeBody from './HomePage/HomeBody';
 import Footer from './HomePage/Footer';

@@ -5,7 +5,7 @@ import { Col, Container, Row, Dropdown, Modal, Button } from 'react-bootstrap';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useAuth } from '../Internships/AuthContext';
 import { FaUser } from 'react-icons/fa'; // Import the user icon
-import { getAuth } from 'firebase/auth'; // Correct import for Firebase Authentication
+import { getAuth } from 'firebase/auth'; // Import for Firebase Authentication
 import { db } from '../firebase/config'; // Import your Firestore configuration
 import { doc, getDoc } from 'firebase/firestore'; // Import Firestore functions
 

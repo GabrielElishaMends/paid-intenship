@@ -1,4 +1,3 @@
-import React from 'react';
 import Sign from './SignUpPage/Sign';
 
 const SignUp = () => {

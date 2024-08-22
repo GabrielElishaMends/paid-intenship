@@ -1,5 +1,4 @@
 // src/components/Login.tsx
-
 import React, { useState } from 'react';
 import {
   Container,
@@ -19,8 +18,8 @@ import {
   sendPasswordResetEmail,
 } from 'firebase/auth';
 import { auth, googleProvider } from '../firebase/config';
-import { FcGoogle } from 'react-icons/fc'; // Import the Google icon
-import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import the visibility icons
+import { FcGoogle } from 'react-icons/fc'; // Import Google icon
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import visibility icons
 import './Login.css';
 
 const Login: React.FC = () => {

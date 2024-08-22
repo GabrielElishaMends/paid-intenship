@@ -71,7 +71,6 @@ const InternshipHeader = () => {
       className={`${styles.customHeader} d-flex align-items-center`}
     >
       <Row noGutters className="d-flex align-items-center w-100">
-        {/* text-white */}
         <Col className={`${styles.logo} fs-2 fw-bold`}>
           <NavLink to="/" className={styles.logoLink} exact>
             PAID-INTERNSHIP

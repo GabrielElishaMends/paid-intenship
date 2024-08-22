@@ -7,7 +7,7 @@ const HomeBody = () => {
     <Container fluid className={`${styles.containerWithMargin} overflow-hidden`}>
       <Row>
         <Col>
-          <Image src="./image/imgHome3.jpg" className={styles.negmarginLeft} />
+          <Image src="./image/imgHome4.jpg" className={styles.negmarginLeft} />
         </Col>
       </Row>
       <Row>

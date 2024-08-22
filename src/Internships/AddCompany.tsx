@@ -3,11 +3,11 @@ import { Container, Row, Col, Form, Button, Spinner, Alert } from 'react-bootstr
 import { Link, useHistory } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
-import { useAuth } from './AuthContext'; // Adjust the import path as necessary
+import { useAuth } from './AuthContext';
 import styles from '../styles.module.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import './AddCompany.css';
-import LoginFirst from './LoginFirst'; // Import the new component
+import LoginFirst from './LoginFirst';
 
 const AddCompany: React.FC = () => {
   const [companyName, setCompanyName] = useState('');

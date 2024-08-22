@@ -1,5 +1,4 @@
 // src/components/About.tsx
-
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { teamMembers } from '../data/teamMembers';

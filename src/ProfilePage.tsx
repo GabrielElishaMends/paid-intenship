@@ -1,4 +1,3 @@
-import React from 'react'
 import InternshipHeader from './Internships/InternshipHeader';
 import Profile from './Profile/Profile';
 import Footer from '../src/HomePage/Footer';

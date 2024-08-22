@@ -1,4 +1,3 @@
-import React from 'react'
 import ApplicationForm from './ApplicationForm/ApplicationForm'
 
 const ApplyForm = () => {

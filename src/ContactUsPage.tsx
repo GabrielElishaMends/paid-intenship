@@ -1,4 +1,3 @@
-import React from 'react';
 import ContactUs from './ContactUs/ContactUs';
 import InternshipHeader from './Internships/InternshipHeader';
 import Footer from '../src/HomePage/Footer';

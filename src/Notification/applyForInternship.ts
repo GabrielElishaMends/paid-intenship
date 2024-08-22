@@ -14,7 +14,7 @@ export const applyForInternship = async (
   linkedin: string,
   portfolio: string,
   experience: string,
-  resumeUrl: string, // Assuming `resumeUrl` is the URL of the uploaded resume
+  resumeUrl: string,
   certificationsUrls: string[] // Array of URLs for certifications
 ) => {
   try {
@@ -50,6 +50,5 @@ export const applyForInternship = async (
     console.log('Application and notification created successfully');
   } catch (error) {
     console.error('Error applying for internship:', error);
-    // Consider showing an alert or user-friendly message
   }
 };
