@@ -111,9 +111,9 @@ const Notification: React.FC = () => {
     <Container className="notification-page">
       <h1 className="text-center mb-4">Notifications</h1>
       {notifications.length === 0 ? (
-        <>
-          <div className="marginbtm"></div>
-        </>
+        <Alert variant="danger" className="text-center">
+          No applications yet.
+        </Alert>
       ) : (
         <Row>
           {notifications.map((notification) => (
@@ -221,3 +221,4 @@ const Notification: React.FC = () => {
 };
 
 export default Notification;
+  

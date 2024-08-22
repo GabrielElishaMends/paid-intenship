@@ -74,6 +74,7 @@ body {
 }
 
 .footer {
+  margin-top: auto;
   background-color: #373b41;
   color: white;
   padding: 1rem;
