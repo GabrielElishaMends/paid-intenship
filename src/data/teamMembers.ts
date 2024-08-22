@@ -15,12 +15,12 @@ const teamMembers: TeamMember[] = [
   {
     name: 'Elisa',
     position: 'Backend Developer',
-    image: './image/teamMember3.jpg',
+    image: './image/teamMember2.jpg',
   },
   {
     name: 'Mends',
     position: 'Website Designer',
-    image: './image/teamMember4.jpg',
+    image: './image/teamMember3.jpg',
   },
 ];
 
