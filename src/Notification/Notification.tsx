@@ -96,23 +96,16 @@ const Notification: React.FC = () => {
     );
   }
 
-  if (error) {
-    return (
-      <Container className="notification-page">
-        <Alert variant="danger" className="text-center">
-          {error}
-        </Alert>
-        <div className="marginbtm"></div>
-      </Container>
-    );
-  }
-
   return (
     <Container className="notification-page">
       <h1 className="text-center mb-4">Notifications</h1>
-      {notifications.length === 0 ? (
+      {error ? (
         <Alert variant="danger" className="text-center">
-          No applications yet.
+          {error}
+        </Alert>
+      ) : notifications.length === 0 ? (
+        <Alert variant="danger" className="text-center">
+          No notifications yet.
         </Alert>
       ) : (
         <Row>
@@ -221,4 +214,3 @@ const Notification: React.FC = () => {
 };
 
 export default Notification;
-  

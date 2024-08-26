@@ -8,17 +8,20 @@ interface PrivateRouteProps extends RouteProps {
   component: React.ComponentType<any>;
 }
 
-const PrivateRoute: React.FC<PrivateRouteProps> = ({ component: Component, ...rest }) => {
+const PrivateRoute: React.FC<PrivateRouteProps> = ({
+  component: Component,
+  ...rest
+}) => {
   const { currentUser } = useAuth();
 
   return (
     <Route
       {...rest}
-      render={props =>
+      render={(props) =>
         currentUser ? (
           <Component {...props} />
         ) : (
-          <LoginFirst message="You must be logged in to access this page." />
+          <LoginFirst message=" Log in to access this page." />
         )
       }
     />
